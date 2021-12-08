@@ -1,5 +1,4 @@
-package Minor_Project;
-
+package Minor_Project; 
 public class Ant
 {
 	protected int trailS;
@@ -42,3 +41,4 @@ public class Ant
 		}
 	}
 }
+

@@ -1,21 +1,29 @@
 package Minor_Project;
 import java.util.*;
-public class Run 
+public class Run
 {
 	public static void main(String[] args) 
 	{
 		Scanner sc=new Scanner(System.in);
-		double c=1;
-		double a=1;
-		double b=5;
-		double e=0.5;
-		double phl=500;
-		double af=0.8;
-		double rf=0.01;
-		int it=1000;
-		int noc=5;
-		AntColony obj=new AntColony(c,a,b,e,phl,af,rf,it,noc);
+		 double c,a,b,af,rf;
+		 int it,noc;
+		 //Input from user
+		 System.out.println("Enter value for number of tails: ");
+		 c=sc.nextDouble();
+		 System.out.println("Enter value for alpha factor of ants: ");
+		 a=sc.nextDouble();
+		 System.out.println("Enter value for beta factor of ants: ");
+		 b=sc.nextDouble();
+		 System.out.println("Enter value for ant factor: ");
+		 af=sc.nextDouble();
+		 System.out.println("Enter value for random factor: ");
+		 rf=sc.nextDouble();
+		 System.out.println("Enter value for maximum number of iteration: ");
+		 it=sc.nextInt();
+		 System.out.println("Enter value for the number of cities: ");
+		 noc=sc.nextInt();
+		AntColony obj=new AntColony(c,a,b,af,rf,it,noc);
+		//Start the program
 		obj.start();
-		obj.display();
 	}
 }
