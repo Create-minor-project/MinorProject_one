@@ -1,14 +1,7 @@
 package Minor_Project;
 import java.util.*;
-/*
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-*/
 public class AntColony 
 {
-	String s="";
 	private double c;
 	private double alpha;
 	private double beta;
@@ -27,9 +20,9 @@ public class AntColony
 	private int currindex;
 	private int bestTourOrder[];
 	private double tourLength;
-	public AntColony(double tr,double al,double be,double evap,double q,double af,double rf,int iter,int nCities)
+	public AntColony(double tr,double al,double be,double af,double rf,int iter,int nCities)
 	{
-		c=tr;alpha=al;beta=be;evaporation=evap;pheromoneLeft=q;antFactor=af;randomFactor=rf;maxIt=iter;
+		c=tr;alpha=al;beta=be;evaporation=0.5;pheromoneLeft=500;antFactor=af;randomFactor=rf;maxIt=iter;
 		graph=generateRandomMatrix(nCities);
 		noOfCities=nCities;
 		noOfAnts=(int)(noOfCities*antFactor);
@@ -52,35 +45,30 @@ public class AntColony
                     randomMatrix[i][j]=Math.abs(random.nextInt(100)+1);
             }
         }
-        s+=("\t");
+        System.out.print("\t");
         for(int i=0;i<n;i++)
-            s+=(i+"\t");
-        s+="\n";
+        	System.out.print(i+"\t");
+        System.out.println();
         for(int i=0;i<n;i++)
         {
-            s+=(i+"\t");
+        	System.out.print(i+"\t");
             for(int j=0;j<n;j++)
-                s+=(randomMatrix[i][j]+"\t");
-            s+="\n";
+            	System.out.print(randomMatrix[i][j]+"\t");
+            System.out.println();
         }
         int sum=0;
         for(int i=0;i<n-1;i++)
             sum+=randomMatrix[i][i+1];
         sum+=randomMatrix[n-1][0];
-        s+=("\nNaive solution 0-1-2-...-n-0 = "+sum+"\n");
+        System.out.print("\nNaive solution 0-1-2-...-n-0 = "+sum+"\n");
         return (randomMatrix);
     }
 	// Start ant colony optimization to travelling salesperson problem
 	public void start() 
     {
-        for(int i=1;i<=5;i++)
-        {
-            s+=("\nAttempt # "+i);
-            solve();
-            s+="\n";
-        }
+		solve();
     }
-	private int[] solve() 
+	public int[] solve() 
     {
         setAnts();
         clearTrail();
@@ -90,8 +78,8 @@ public class AntColony
             updateTrails();
             updateBestTrail();
         }
-        s+=("\nBest tour length: "+(tourLength-noOfCities));
-        s+=("\nBest tour order: "+Arrays.toString(bestTourOrder));
+        System.out.print("\nBest tour length: "+(tourLength-noOfCities));
+        System.out.print("\nBest tour order: "+Arrays.toString(bestTourOrder));
         return (bestTourOrder.clone());
     }
 	// Set the ants for the stimulation process
@@ -211,9 +199,4 @@ public class AntColony
                 trails[i][j]=c;
         }
     }
-	// Display the output
-	public void display()
-	{
-		System.out.println(s);
-	}
 }
